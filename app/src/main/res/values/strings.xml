@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Walmart Demo</string>
+    <string name="network_error">Network connection failed</string>
+</resources>
