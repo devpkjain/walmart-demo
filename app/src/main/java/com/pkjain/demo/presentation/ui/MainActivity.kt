@@ -3,6 +3,7 @@ package com.pkjain.demo.presentation.ui
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
@@ -12,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.pkjain.demo.R
 import com.pkjain.demo.model.Product
+import com.pkjain.demo.presentation.ui.details.ProductDetailsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.empty_view.*
 
@@ -37,11 +39,8 @@ class MainActivity : AppCompatActivity() {
         adapter = MainAdapter(
                 object : MainAdapter.ItemClickListener {
                     override fun onItemClicked(product: Product) {
-//                        if (!product.url.isNullOrBlank()) {
-//                            val i = Intent(Intent.ACTION_VIEW)
-//                            i.data = Uri.parse(product.url)
-//                            startActivity(i)
-//                        }
+                        val intent =   Intent( main_recyclerView.context, ProductDetailsActivity::class.java)
+                                startActivity(intent)
                     }
                 }
         )
