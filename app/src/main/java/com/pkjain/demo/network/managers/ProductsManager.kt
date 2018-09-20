@@ -1,9 +1,7 @@
 package com.pkjain.demo.network.managers
 
-import com.pkjain.demo.network.services.ProductsService
-import com.pkjain.demo.domain.mappers.ProductsMapper
 import com.pkjain.demo.model.Product
-import com.pkjain.demo.model.ProductsDto
+import com.pkjain.demo.network.services.ProductsService
 import io.reactivex.Single
 
 /**
@@ -22,6 +20,6 @@ class ProductsManager {
                     } else Single.just(response)
                 }
                 .map { response -> response.body() }
-                .map { products -> products.products}
+                .map { products -> products.products }
     }
 }

@@ -3,7 +3,7 @@ package com.pkjain.demo.utils.pagination.factory
 import android.arch.paging.DataSource
 import com.pkjain.demo.model.Product
 import com.pkjain.demo.utils.pagination.datasource.ProductsDataSource
-import com.pkjain.demo.utils.pagination.datasource._base.OnDataSourceLoading
+import com.pkjain.demo.utils.pagination.datasource.base.OnDataSourceLoading
 
 /**
  * Factory class that handles the creation of DataSources

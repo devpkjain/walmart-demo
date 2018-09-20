@@ -9,8 +9,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitUtil {
-    val retrofit : Retrofit
+    val retrofit: Retrofit
     val gson = Gson()
+
     init {
         var okhttpClient = OkHttpClient.Builder()
                 .addInterceptor(
