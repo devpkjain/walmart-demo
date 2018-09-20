@@ -3,7 +3,7 @@ package com.pkjain.demo.utils.pagination.datasource
 import android.annotation.SuppressLint
 import com.pkjain.demo.model.Product
 import com.pkjain.demo.network.managers.ProductsManager
-import com.pkjain.demo.utils.pagination.datasource._base.BaseDataSource
+import com.pkjain.demo.utils.pagination.datasource.base.BaseDataSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
  * @see BaseDataSource
  */
 class ProductsDataSource() : BaseDataSource<Product>() {
-    val manager : ProductsManager = ProductsManager()
+    val manager: ProductsManager = ProductsManager()
     val firstPageNumber = 1
     @SuppressLint("CheckResult")
     override fun loadInitialData(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Product>) {
@@ -22,7 +22,9 @@ class ProductsDataSource() : BaseDataSource<Product>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(this::addDisposable)
                 .subscribe(
-                        { items -> submitInitialData(items, params, callback) },
+                        { items ->
+                            submitInitialData(items, params, callback)
+                        },
                         { error -> submitInitialError(error) }
                 )
     }

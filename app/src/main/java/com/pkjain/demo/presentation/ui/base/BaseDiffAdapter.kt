@@ -9,7 +9,7 @@ import android.view.View
 const val VIEW_TYPE_NORMAL = 0
 const val VIEW_TYPE_LOADING = 1
 
-abstract class BaseDiffAdapter<T, ViewHolder : RecyclerView.ViewHolder>(diffCallback : DiffUtil.ItemCallback<T> = defaultCallback.defaultDiffCallback()) :
+abstract class BaseDiffAdapter<T, ViewHolder : RecyclerView.ViewHolder>(diffCallback: DiffUtil.ItemCallback<T> = defaultCallback.defaultDiffCallback()) :
         PagedListAdapter<T, ViewHolder>(diffCallback) {
 
     // when the adapter is not loading, we want to update it in order to remove the last entry
@@ -21,7 +21,7 @@ abstract class BaseDiffAdapter<T, ViewHolder : RecyclerView.ViewHolder>(diffCall
             }
         }
 
-    protected inner class LoadingViewHolder(view : View) : RecyclerView.ViewHolder(view)
+    protected inner class LoadingViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     override fun getItemViewType(position: Int): Int {
         return if (loading && position == itemCount - 1) {

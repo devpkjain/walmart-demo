@@ -1,4 +1,4 @@
-package com.pkjain.demo.utils.pagination.datasource._base
+package com.pkjain.demo.utils.pagination.datasource.base
 
 /**
  * Interface that will let us communicate between

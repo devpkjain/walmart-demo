@@ -1,6 +1,6 @@
-package com.pkjain.demo.utils.pagination.datasource._base
+package com.pkjain.demo.utils.pagination.datasource.base
 
-import android.arch.paging.PageKeyedDataSource;
+import android.arch.paging.PageKeyedDataSource
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -16,6 +16,8 @@ abstract class BaseDataSource<T> : PageKeyedDataSource<Int, T>() {
 
     protected abstract fun loadInitialData(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>)
     protected abstract fun loadAditionalData(params: LoadParams<Int>, callback: LoadCallback<Int, T>)
+
+    var list: List<T> = listOf()
 
     /**
      * Initial data loaded by the recyclerview,
@@ -34,7 +36,7 @@ abstract class BaseDataSource<T> : PageKeyedDataSource<Int, T>() {
      * All the data that is fetched when the user scrolls
      */
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
-            onDataSourceLoading.onDataLoading()
+        onDataSourceLoading.onDataLoading()
         loadAditionalData(params, callback)
     }
 
@@ -45,18 +47,20 @@ abstract class BaseDataSource<T> : PageKeyedDataSource<Int, T>() {
      */
     protected fun submitInitialData(items: List<T>, params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, T>) {
         callback.onResult(items, 0, params.requestedLoadSize)
-            if (!items.isEmpty()) {
-                onDataSourceLoading.onFirstFetchEndWithData()
-            } else {
-                onDataSourceLoading.onFirstFetchEndWithoutData()
-            }
+        if (!items.isEmpty()) {
+            list = items
+            onDataSourceLoading.onFirstFetchEndWithData()
+        } else {
+            onDataSourceLoading.onFirstFetchEndWithoutData()
+        }
     }
 
     protected fun submitData(items: List<T>, params: LoadParams<Int>, callback: LoadCallback<Int, T>) {
         // If we reach the limit, then put value NULL as adjacent key to state that the list has ended
         // else, we will configure the next key to be fetched
-        callback.onResult(items, if (items.isEmpty()) null else params.key +1)
-            onDataSourceLoading.onDataLoadingEnd()
+        (list as ArrayList).addAll(items)
+        callback.onResult(items, if (items.isEmpty()) null else params.key + 1)
+        onDataSourceLoading.onDataLoadingEnd()
     }
 
 
